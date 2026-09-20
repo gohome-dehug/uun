@@ -105,10 +105,12 @@ header {
 main {
     max-width: 850px;
     width: 90%;
-    margin: 80px auto 100px auto;
+    margin: 80px auto 40px auto;
     display: flex;
     flex-direction: column;
     gap: 40px;
+    position: relative;
+    z-index: 2; /* 창은 항상 위쪽에 오도록 설정 */
 }
 
 .win-box {
@@ -146,7 +148,7 @@ h2 { font-size: 1.3rem; margin-bottom: 15px; border-bottom: 2px dashed #76C457; 
 .card-list { list-style: none; }
 .card-list li { margin-bottom: 8px; }
 
-/* 📜 스크롤을 끝까지 해야만 나오는 하단바 설정 */
+/* 📜 스크롤을 끝까지 해야만 나오는 하단바 설정 (위치를 조금 더 위로 조정) */
 footer {
     background: rgba(255, 255, 255, 0.95);
     border-top: 2px solid #848484;
@@ -155,8 +157,8 @@ footer {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    position: absolute; /* 스크롤 끝에 나타나도록 absolute 설정 */
-    top: calc(100vh + 300px); /* 본문 아래 스크롤 공간 확보 후 등장 */
+    position: absolute; 
+    top: calc(100vh + 100px); /* 너무 아래에 박히지 않도록 거리 조정 */
     width: 100%;
     z-index: 1000;
 }
@@ -182,8 +184,22 @@ body.horro-mode footer {
 .settings-popup.active { display: flex; }
 .setting-row { display: flex; justify-content: space-between; align-items: center; font-size: 0.8rem; }
 
-/* 기타 연출용 요소 (배경 형체, 검은 문, 블루스크린) */
-#bg-entity { position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%) scale(0); width: 400px; height: 400px; background: radial-gradient(circle, rgba(92,80,130,0.4) 0%, rgba(0,0,0,0.8) 70%); border-radius: 50%; pointer-events: none; opacity: 0; transition: all 2s ease; }
+/* 공포모드 동그란 배경 형체 (z-index를 낮춰서 창 뒤로 가도록 설정) */
+#bg-entity { 
+    position: fixed; 
+    top: 50%; 
+    left: 50%; 
+    transform: translate(-50%, -50%) scale(0); 
+    width: 400px; 
+    height: 400px; 
+    background: radial-gradient(circle, rgba(92,80,130,0.4) 0%, rgba(0,0,0,0.8) 70%); 
+    border-radius: 50%; 
+    pointer-events: none; 
+    opacity: 0; 
+    transition: all 2s ease; 
+    z-index: 1; /* 창(z-index: 2)보다 뒤에 오도록 수정 */
+}
+
 body.horro-mode #bg-entity { opacity: 1; transform: translate(-50%, -50%) scale(1.5); }
 #black-door { position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%); width: 100px; height: 180px; background: #000; border: 3px solid #5c5082; display: none; cursor: pointer; z-index: 100; align-items: center; justify-content: center; }
 #bsod-screen { position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; background: #0078d7; color: #fff; padding: 10%; display: none; flex-direction: column; justify-content: center; z-index: 9999; cursor: pointer; }
