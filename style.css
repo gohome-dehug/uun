@@ -1,0 +1,189 @@
+@font-face {
+    font-family: 'NeoDunggeunmo';
+    src: url('https://fastly.jsdelivr.net/gh/projectnoonnu/noonfonts_2001@1.1/NeoDunggeunmo.woff') format('woff');
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; font-family: 'NeoDunggeunmo', monospace, sans-serif; }
+
+body {
+    background: linear-gradient(to bottom, #a8d8ff 0%, #c6e7ff 50%, #e8f5e9 80%, #76c457 100%);
+    background-attachment: fixed;
+    min-height: 100vh;
+    color: #333;
+    overflow-x: hidden;
+    transition: background 1.5s ease, color 1.5s ease;
+}
+
+/* 🌙 탁한 보라색 배경 및 흰색/회색 다크모드 창 스타일 */
+body.horro-mode {
+    background: linear-gradient(to bottom, #1e1b2e 0%, #120f1d 50%, #09080e 100%) !important;
+    color: #d1d5db;
+}
+
+body.horro-mode .win-box {
+    background: #f0f0f0 !important; /* 창 배경은 흰색 */
+    border-color: #7a7a7a !important; /* 창 테두리는 회색 */
+    box-shadow: 0 0 25px rgba(112, 0, 255, 0.2) !important;
+    color: #1f1f1f !important;
+}
+
+body.horro-mode .win-header {
+    background: linear-gradient(90deg, #3d355c, #5c5082) !important;
+    color: #ffffff !important;
+}
+
+/* 상단바 및 햄버거 메뉴 기본 (PC용) */
+header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    background: rgba(255, 255, 255, 0.9);
+    border-bottom: 2px solid #848484;
+    z-index: 1000;
+}
+
+.nav-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 10px;
+}
+
+.hamburger {
+    display: none;
+    background: none;
+    border: 2px solid #808080;
+    font-size: 1.2rem;
+    padding: 4px 8px;
+    cursor: pointer;
+}
+
+.navbar {
+    display: flex;
+    gap: 12px;
+}
+
+.nav-item {
+    background: #ffffff;
+    border: 2px solid;
+    border-color: #ffffff #808080 #808080 #ffffff;
+    padding: 6px 14px;
+    cursor: pointer;
+    text-decoration: none;
+    color: #000;
+}
+
+.nav-item.active {
+    background-color: #C6E7FF;
+}
+
+/* 모바일 화면에서 햄버거 메뉴 적용 */
+@media (max-width: 768px) {
+    .nav-container {
+        justify-content: flex-start;
+    }
+    .hamburger {
+        display: block;
+    }
+    .navbar {
+        display: none;
+        flex-direction: column;
+        position: absolute;
+        top: 100%;
+        left: 0;
+        width: 100%;
+        background: rgba(255, 255, 255, 0.95);
+        border-bottom: 2px solid #848484;
+        padding: 10px;
+    }
+    .navbar.show {
+        display: flex;
+    }
+}
+
+main {
+    max-width: 850px;
+    width: 90%;
+    margin: 80px auto 100px auto;
+    display: flex;
+    flex-direction: column;
+    gap: 40px;
+}
+
+.win-box {
+    background: rgba(255, 255, 255, 0.88);
+    border: 2px solid #ffffff;
+    box-shadow: 6px 6px 20px rgba(0, 0, 0, 0.12);
+    border-radius: 4px;
+    overflow: hidden;
+}
+
+.win-header {
+    background: linear-gradient(90deg, #C6E7FF, #9be1a0);
+    padding: 6px 12px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-weight: bold;
+}
+
+.win-controls { display: flex; gap: 4px; }
+.win-btn {
+    width: 18px; height: 16px; background: #e0e0e0;
+    border: 1px solid; border-color: #fff #808080 #808080 #fff;
+    font-size: 10px; display: flex; align-items: center; justify-content: center; cursor: pointer;
+}
+.win-btn.close-btn:hover { background: #ef4444; color: white; }
+
+.win-content { padding: 30px; line-height: 1.6; }
+.home-center { text-align: center; }
+.home-title { font-size: 1.5rem; margin-bottom: 15px; }
+.home-sub { font-size: 1rem; background: rgba(255,255,255,0.7); display: inline-block; padding: 6px 14px; border-radius: 20px; }
+
+h2 { font-size: 1.3rem; margin-bottom: 15px; border-bottom: 2px dashed #76C457; padding-bottom: 6px; }
+.card { background: #fff; border: 1px solid #d1d5db; padding: 15px; border-radius: 4px; }
+.card-list { list-style: none; }
+.card-list li { margin-bottom: 8px; }
+
+/* 📜 스크롤을 끝까지 해야만 나오는 하단바 설정 */
+footer {
+    background: rgba(255, 255, 255, 0.95);
+    border-top: 2px solid #848484;
+    padding: 8px 20px;
+    font-size: 0.85rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: absolute; /* 스크롤 끝에 나타나도록 absolute 설정 */
+    top: calc(100vh + 300px); /* 본문 아래 스크롤 공간 확보 후 등장 */
+    width: 100%;
+    z-index: 1000;
+}
+
+body.horro-mode footer {
+    background: #120f1d;
+    border-top-color: #5c5082;
+    color: #d1d5db;
+}
+
+.start-btn {
+    background: #e0e0e0;
+    border: 2px solid; border-color: #fff #808080 #808080 #fff;
+    padding: 3px 10px; font-weight: bold; cursor: pointer; display: flex; align-items: center; gap: 5px;
+}
+
+.system-tray { display: flex; align-items: center; gap: 8px; position: relative; }
+.settings-btn { background: #e0e0e0; border: 1px solid; border-color: #fff #808080 #808080 #fff; font-size: 10px; padding: 2px 6px; cursor: pointer; }
+.settings-popup {
+    position: absolute; bottom: 30px; right: 0; background: #fff; border: 2px solid #848484;
+    padding: 10px; width: 180px; display: none; flex-direction: column; gap: 6px; z-index: 1100; color: #000;
+}
+.settings-popup.active { display: flex; }
+.setting-row { display: flex; justify-content: space-between; align-items: center; font-size: 0.8rem; }
+
+/* 기타 연출용 요소 (배경 형체, 검은 문, 블루스크린) */
+#bg-entity { position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%) scale(0); width: 400px; height: 400px; background: radial-gradient(circle, rgba(92,80,130,0.4) 0%, rgba(0,0,0,0.8) 70%); border-radius: 50%; pointer-events: none; opacity: 0; transition: all 2s ease; }
+body.horro-mode #bg-entity { opacity: 1; transform: translate(-50%, -50%) scale(1.5); }
+#black-door { position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%); width: 100px; height: 180px; background: #000; border: 3px solid #5c5082; display: none; cursor: pointer; z-index: 100; align-items: center; justify-content: center; }
+#bsod-screen { position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; background: #0078d7; color: #fff; padding: 10%; display: none; flex-direction: column; justify-content: center; z-index: 9999; cursor: pointer; }
