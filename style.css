@@ -12,6 +12,7 @@ body {
     color: #333;
     overflow-x: hidden;
     transition: background 1.5s ease, color 1.5s ease;
+    padding-bottom: 60px; /* 하단바에 내용이 가리지 않도록 여백 추가 */
 }
 
 /* 🌙 탁한 보라색 배경 및 흰색/회색 다크모드 창 스타일 */
@@ -21,8 +22,8 @@ body.horro-mode {
 }
 
 body.horro-mode .win-box {
-    background: #f0f0f0 !important; /* 창 배경은 흰색 */
-    border-color: #7a7a7a !important; /* 창 테두리는 회색 */
+    background: #f0f0f0 !important; 
+    border-color: #7a7a7a !important; 
     box-shadow: 0 0 25px rgba(112, 0, 255, 0.2) !important;
     color: #1f1f1f !important;
 }
@@ -32,7 +33,7 @@ body.horro-mode .win-header {
     color: #ffffff !important;
 }
 
-/* 상단바 및 햄버거 메뉴 기본 (PC용) */
+/* 상단바 및 햄버거 메뉴 */
 header {
     position: fixed;
     top: 0;
@@ -78,14 +79,9 @@ header {
     background-color: #C6E7FF;
 }
 
-/* 모바일 화면에서 햄버거 메뉴 적용 */
 @media (max-width: 768px) {
-    .nav-container {
-        justify-content: flex-start;
-    }
-    .hamburger {
-        display: block;
-    }
+    .nav-container { justify-content: flex-start; }
+    .hamburger { display: block; }
     .navbar {
         display: none;
         flex-direction: column;
@@ -97,9 +93,7 @@ header {
         border-bottom: 2px solid #848484;
         padding: 10px;
     }
-    .navbar.show {
-        display: flex;
-    }
+    .navbar.show { display: flex; }
 }
 
 main {
@@ -110,7 +104,7 @@ main {
     flex-direction: column;
     gap: 40px;
     position: relative;
-    z-index: 2; /* 창은 항상 위쪽에 오도록 설정 */
+    z-index: 2; 
 }
 
 .win-box {
@@ -148,7 +142,7 @@ h2 { font-size: 1.3rem; margin-bottom: 15px; border-bottom: 2px dashed #76C457; 
 .card-list { list-style: none; }
 .card-list li { margin-bottom: 8px; }
 
-/* 📜 스크롤을 끝까지 해야만 나오는 하단바 설정 (위치를 조금 더 위로 조정) */
+/* 📌 하단바를 화면 맨 아래에 항상 고정 (스크롤 안 내려도 됨) */
 footer {
     background: rgba(255, 255, 255, 0.95);
     border-top: 2px solid #848484;
@@ -157,8 +151,9 @@ footer {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    position: absolute; 
-    top: calc(100vh + 100px); /* 너무 아래에 박히지 않도록 거리 조정 */
+    position: fixed; 
+    bottom: 0;
+    left: 0;
     width: 100%;
     z-index: 1000;
 }
@@ -184,7 +179,7 @@ body.horro-mode footer {
 .settings-popup.active { display: flex; }
 .setting-row { display: flex; justify-content: space-between; align-items: center; font-size: 0.8rem; }
 
-/* 공포모드 동그란 배경 형체 (z-index를 낮춰서 창 뒤로 가도록 설정) */
+/* 공포모드 동그란 배경 형체 (평소엔 완전히 숨김, z-index 1로 창 뒤에 배치) */
 #bg-entity { 
     position: fixed; 
     top: 50%; 
@@ -196,10 +191,16 @@ body.horro-mode footer {
     border-radius: 50%; 
     pointer-events: none; 
     opacity: 0; 
+    visibility: hidden;
     transition: all 2s ease; 
-    z-index: 1; /* 창(z-index: 2)보다 뒤에 오도록 수정 */
+    z-index: 1; 
 }
 
-body.horro-mode #bg-entity { opacity: 1; transform: translate(-50%, -50%) scale(1.5); }
+body.horro-mode #bg-entity { 
+    opacity: 1; 
+    visibility: visible;
+    transform: translate(-50%, -50%) scale(1.5); 
+}
+
 #black-door { position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%); width: 100px; height: 180px; background: #000; border: 3px solid #5c5082; display: none; cursor: pointer; z-index: 100; align-items: center; justify-content: center; }
 #bsod-screen { position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; background: #0078d7; color: #fff; padding: 10%; display: none; flex-direction: column; justify-content: center; z-index: 9999; cursor: pointer; }
