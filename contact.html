@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>하윤의 바탕화면 - Contact</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div id="bg-entity"></div>
+    <div id="black-door" onclick="triggerBSOD()"><span style="color: #ef4444; font-size: 0.8rem;">ENTER</span></div>
+    
+    <div id="bsod-screen" onclick="resetFromBSOD()">
+        <h1>:(</h1>
+        <p>PC에 문제가 발생하여 다시 시작해야 합니다.<br>(화면을 클릭하면 복구됩니다)</p>
+    </div>
+
+    <header>
+        <div class="nav-container">
+            <button class="hamburger" onclick="toggleMenu()">☰</button>
+            <nav class="navbar" id="navbar">
+                <a href="index.html" class="nav-item">🏠 Home</a>
+                <a href="profile.html" class="nav-item">👤 Profile</a>
+                <a href="projects.html" class="nav-item">💻 Projects</a>
+                <a href="growth.html" class="nav-item">🌱 Growth</a>
+                <a href="playlab.html" class="nav-item">🎬 Play Lab</a>
+                <a href="contact.html" class="nav-item active">✉ Contact</a>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <section class="win-box">
+            <div class="win-header">
+                <div class="win-title">✉ C:\Hayoon\Contact.msg</div>
+                <div class="win-controls"><div class="win-btn close-btn" onclick="closeWindow(this)">X</div></div>
+            </div>
+            <div class="win-content">
+                <h2>✉ Contact</h2>
+                <div class="card">
+                    <p style="margin-bottom: 10px;"><b>📱 Phone:</b> 010 - 6333 - 6770</p>
+                    <p><b>📧 Email:</b> khy01063336770@com</p>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="start-btn" id="start-btn" onclick="handleStartClick()"><span>☁️</span> 시작 (Start)</div>
+        <div class="system-tray">
+            <button class="settings-btn" onclick="toggleSettings()">▲</button>
+            <span>OS v2.0 | <span id="clock">00:00</span></span>
+            <div id="settings-popup" class="settings-popup">
+                <div style="font-weight: bold; border-bottom: 1px solid #ccc; padding-bottom: 4px; margin-bottom: 6px;">⚙️ 환경 설정</div>
+                <div class="setting-row">
+                    <span>공포모드</span>
+                    <input type="checkbox" id="toggle-horror" onchange="toggleHorrorSetting(this.checked)">
+                </div>
+            </div>
+        </div>
+    </footer>
+    <script src="script.js"></script>
+</body>
+</html>
