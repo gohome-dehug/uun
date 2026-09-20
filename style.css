@@ -12,25 +12,42 @@ body {
     color: #333;
     overflow-x: hidden;
     transition: background 1.5s ease, color 1.5s ease;
-    padding-bottom: 60px; /* 하단바에 내용이 가리지 않도록 여백 추가 */
+    padding-bottom: 60px;
 }
 
-/* 🌙 탁한 보라색 배경 및 흰색/회색 다크모드 창 스타일 */
+/* 🌙 공포모드 / 수치 소멸 시 디자인: 검은 배경, 빨간 테두리, 글씨 깨짐(왜곡) */
 body.horro-mode {
-    background: linear-gradient(to bottom, #1e1b2e 0%, #120f1d 50%, #09080e 100%) !important;
-    color: #d1d5db;
+    background: #000000 !important;
+    color: #ef4444 !important;
 }
 
 body.horro-mode .win-box {
-    background: #f0f0f0 !important; 
-    border-color: #7a7a7a !important; 
-    box-shadow: 0 0 25px rgba(112, 0, 255, 0.2) !important;
-    color: #1f1f1f !important;
+    background: #050505 !important; 
+    border: 3px solid #ef4444 !important; /* 빨간 테두리 */
+    box-shadow: 0 0 25px rgba(239, 68, 68, 0.4) !important;
+    color: #ef4444 !important;
 }
 
 body.horro-mode .win-header {
-    background: linear-gradient(90deg, #3d355c, #5c5082) !important;
-    color: #ffffff !important;
+    background: #500000 !important;
+    color: #ff8888 !important;
+    border-bottom: 2px solid #ef4444;
+}
+
+/* 글씨가 깨지는(왜곡되는) 효과 */
+body.horro-mode h1, 
+body.horro-mode h2, 
+body.horro-mode p, 
+body.horro-mode span, 
+body.horro-mode li {
+    animation: textGlitch 0.15s infinite alternate;
+    letter-spacing: 2px;
+}
+
+@keyframes textGlitch {
+    0% { transform: skew(0deg); opacity: 0.9; }
+    50% { transform: skew(-3deg) scaleY(1.02); filter: blur(0.5px); }
+    100% { transform: skew(3deg); opacity: 1; }
 }
 
 /* 상단바 및 햄버거 메뉴 */
@@ -42,6 +59,11 @@ header {
     background: rgba(255, 255, 255, 0.9);
     border-bottom: 2px solid #848484;
     z-index: 1000;
+}
+
+body.horro-mode header {
+    background: #111;
+    border-bottom-color: #ef4444;
 }
 
 .nav-container {
@@ -75,8 +97,18 @@ header {
     color: #000;
 }
 
+body.horro-mode .nav-item {
+    background: #222;
+    color: #ef4444;
+    border-color: #ef4444 #500000 #500000 #ef4444;
+}
+
 .nav-item.active {
     background-color: #C6E7FF;
+}
+
+body.horro-mode .nav-item.active {
+    background-color: #500000;
 }
 
 @media (max-width: 768px) {
@@ -94,6 +126,7 @@ header {
         padding: 10px;
     }
     .navbar.show { display: flex; }
+    body.horro-mode .navbar { background: #111; border-bottom-color: #ef4444; }
 }
 
 main {
@@ -137,12 +170,18 @@ main {
 .home-title { font-size: 1.5rem; margin-bottom: 15px; }
 .home-sub { font-size: 1rem; background: rgba(255,255,255,0.7); display: inline-block; padding: 6px 14px; border-radius: 20px; }
 
+body.horro-mode .home-sub { background: #222; color: #ef4444; }
+
 h2 { font-size: 1.3rem; margin-bottom: 15px; border-bottom: 2px dashed #76C457; padding-bottom: 6px; }
+body.horro-mode h2 { border-bottom-color: #ef4444; }
+
 .card { background: #fff; border: 1px solid #d1d5db; padding: 15px; border-radius: 4px; }
+body.horro-mode .card { background: #111; border-color: #ef4444; color: #ef4444; }
+
 .card-list { list-style: none; }
 .card-list li { margin-bottom: 8px; }
 
-/* 📌 하단바를 화면 맨 아래에 항상 고정 (스크롤 안 내려도 됨) */
+/* 📌 하단바 고정 */
 footer {
     background: rgba(255, 255, 255, 0.95);
     border-top: 2px solid #848484;
@@ -159,9 +198,9 @@ footer {
 }
 
 body.horro-mode footer {
-    background: #120f1d;
-    border-top-color: #5c5082;
-    color: #d1d5db;
+    background: #000;
+    border-top-color: #ef4444;
+    color: #ef4444;
 }
 
 .start-btn {
@@ -169,38 +208,39 @@ body.horro-mode footer {
     border: 2px solid; border-color: #fff #808080 #808080 #fff;
     padding: 3px 10px; font-weight: bold; cursor: pointer; display: flex; align-items: center; gap: 5px;
 }
+body.horro-mode .start-btn { background: #222; color: #ef4444; border-color: #ef4444 #500000 #500000 #ef4444; }
 
 .system-tray { display: flex; align-items: center; gap: 8px; position: relative; }
 .settings-btn { background: #e0e0e0; border: 1px solid; border-color: #fff #808080 #808080 #fff; font-size: 10px; padding: 2px 6px; cursor: pointer; }
+body.horro-mode .settings-btn { background: #222; color: #ef4444; border-color: #ef4444 #500000 #500000 #ef4444; }
+
 .settings-popup {
     position: absolute; bottom: 30px; right: 0; background: #fff; border: 2px solid #848484;
     padding: 10px; width: 180px; display: none; flex-direction: column; gap: 6px; z-index: 1100; color: #000;
 }
+body.horro-mode .settings-popup { background: #111; border-color: #ef4444; color: #ef4444; }
 .settings-popup.active { display: flex; }
 .setting-row { display: flex; justify-content: space-between; align-items: center; font-size: 0.8rem; }
 
-/* 공포모드 동그란 배경 형체 (평소엔 완전히 숨김, z-index 1로 창 뒤에 배치) */
+/* 배경 형체 (공포모드 시 표시) */
 #bg-entity { 
-    position: fixed; 
-    top: 50%; 
-    left: 50%; 
-    transform: translate(-50%, -50%) scale(0); 
-    width: 400px; 
-    height: 400px; 
-    background: radial-gradient(circle, rgba(92,80,130,0.4) 0%, rgba(0,0,0,0.8) 70%); 
-    border-radius: 50%; 
-    pointer-events: none; 
-    opacity: 0; 
-    visibility: hidden;
-    transition: all 2s ease; 
-    z-index: 1; 
+    position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%) scale(0); 
+    width: 400px; height: 400px; background: radial-gradient(circle, rgba(239,68,68,0.2) 0%, rgba(0,0,0,0.9) 70%); 
+    border-radius: 50%; pointer-events: none; opacity: 0; visibility: hidden; transition: all 2s ease; z-index: 1; 
+}
+body.horro-mode #bg-entity { opacity: 1; visibility: visible; transform: translate(-50%, -50%) scale(1.5); }
+
+/* 검은 문 (돌고래 창을 닫으면 등장) */
+#black-door { 
+    position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%); 
+    width: 100px; height: 180px; background: #000; border: 3px solid #ef4444; 
+    display: none; cursor: pointer; z-index: 100; align-items: center; justify-content: center; 
+    box-shadow: 0 0 20px #ef4444;
 }
 
-body.horro-mode #bg-entity { 
-    opacity: 1; 
-    visibility: visible;
-    transform: translate(-50%, -50%) scale(1.5); 
+/* 블루스크린 */
+#bsod-screen { 
+    position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; 
+    background: #0078d7; color: #fff; padding: 10%; display: none; 
+    flex-direction: column; justify-content: center; z-index: 99999; cursor: pointer; 
 }
-
-#black-door { position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%); width: 100px; height: 180px; background: #000; border: 3px solid #5c5082; display: none; cursor: pointer; z-index: 100; align-items: center; justify-content: center; }
-#bsod-screen { position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; background: #0078d7; color: #fff; padding: 10%; display: none; flex-direction: column; justify-content: center; z-index: 9999; cursor: pointer; }
