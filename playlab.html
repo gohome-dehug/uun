@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>하윤의 바탕화면 - Play Lab</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div id="bg-entity"></div>
+    <div id="black-door" onclick="triggerBSOD()"><span style="color: #ef4444; font-size: 0.8rem;">ENTER</span></div>
+    
+    <div id="bsod-screen" onclick="resetFromBSOD()">
+        <h1>:(</h1>
+        <p>PC에 문제가 발생하여 다시 시작해야 합니다.<br>(화면을 클릭하면 복구됩니다)</p>
+    </div>
+
+    <header>
+        <div class="nav-container">
+            <button class="hamburger" onclick="toggleMenu()">☰</button>
+            <nav class="navbar" id="navbar">
+                <a href="index.html" class="nav-item">🏠 Home</a>
+                <a href="profile.html" class="nav-item">👤 Profile</a>
+                <a href="projects.html" class="nav-item">💻 Projects</a>
+                <a href="growth.html" class="nav-item">🌱 Growth</a>
+                <a href="playlab.html" class="nav-item active">🎬 Play Lab</a>
+                <a href="contact.html" class="nav-item">✉ Contact</a>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <section class="win-box">
+            <div class="win-header">
+                <div class="win-title">🎬 C:\Hayoon\PlayLab_DolphinHelper.exe</div>
+                <div class="win-controls"><div class="win-btn close-btn" onclick="closeWindow(this)">X</div></div>
+            </div>
+            <div class="win-content">
+                <h2>🎬 Play Lab</h2>
+                <div style="text-align: center; margin-bottom: 15px;">
+                    <b>🐬 컴퓨터 도우미 (돌고래) 키우기</b>
+                    <p style="font-size: 0.9rem; color: #666; margin-top: 4px;" id="pet-guide">먹이를 주고, 씻겨주고, 재워주며 돌고래를 관리해주세요!</p>
+                </div>
+
+                <div style="display: flex; flex-direction: column; align-items: center; gap: 15px;">
+                    <div style="width: 240px; height: 160px; background: #e0f2fe; border: 3px solid #38bdf8; border-radius: 8px; display: flex; flex-direction: column; align-items: center; justify-content: center; position: relative;">
+                        <div id="pet-dialog" style="position: absolute; top: 8px; font-size: 0.8rem; background: #fff; padding: 2px 8px; border-radius: 6px; border: 1px solid #0284c7;">큐우-! 안녕!</div>
+                        <div id="dolphin-char" style="font-size: 50px;">🐬</div>
+                    </div>
+
+                    <div style="width: 100%; max-width: 280px; display: flex; flex-direction: column; gap: 8px; font-size: 0.85rem;">
+                        <div style="display: flex; justify-content: space-between;"><span>배부름</span><div style="width: 60%; background: #ddd; height: 10px; border-radius: 5px; overflow: hidden;"><div id="satiety-fill" style="width: 70%; height: 100%; background: #f59e0b;"></div></div></div>
+                        <div style="display: flex; justify-content: space-between;"><span>청결도</span><div style="width: 60%; background: #ddd; height: 10px; border-radius: 5px; overflow: hidden;"><div id="cleanliness-fill" style="width: 70%; height: 100%; background: #3b82f6;"></div></div></div>
+                        <div style="display: flex; justify-content: space-between;"><span>체력</span><div style="width: 60%; background: #ddd; height: 10px; border-radius: 5px; overflow: hidden;"><div id="energy-fill" style="width: 70%; height: 100%; background: #10b981;"></div></div></div>
+                    </div>
+
+                    <div style="display: flex; gap: 8px;">
+                        <button onclick="feedPet()" style="padding: 6px 12px; cursor: pointer;">🐟 먹이</button>
+                        <button onclick="cleanPet()" style="padding: 6px 12px; cursor: pointer;">🧼 씻기</button>
+                        <button onclick="sleepPet()" style="padding: 6px 12px; cursor: pointer;">💤 잠자기</button>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="start-btn" id="start-btn" onclick="handleStartClick()"><span>☁️</span> 시작 (Start)</div>
+        <div class="system-tray">
+            <button class="settings-btn" onclick="toggleSettings()">▲</button>
+            <span>OS v2.0 | <span id="clock">00:00</span></span>
+            <div id="settings-popup" class="settings-popup">
+                <div style="font-weight: bold; border-bottom: 1px solid #ccc; padding-bottom: 4px; margin-bottom: 6px;">⚙️ 환경 설정</div>
+                <div class="setting-row">
+                    <span>공포모드</span>
+                    <input type="checkbox" id="toggle-horror" onchange="toggleHorrorSetting(this.checked)">
+                </div>
+            </div>
+        </div>
+    </footer>
+    <script src="script.js"></script>
+</body>
+</html>
